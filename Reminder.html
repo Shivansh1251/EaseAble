@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Reminder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #0078D7;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            color: white;
+            background: #0078D7;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #005ea6;
+        }
+        #log {
+            margin-top: 20px;
+            text-align: left;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            margin: auto;
+        }
+        .back-btn {
+            background: red;
+        }
+        .back-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <header>Health Reminders</header>
+    <div class="container">
+        <p>Stay hydrated and take your medications on time!</p>
+        
+        <div class="input-group">
+            <label for="medicationTime">Set Medication Time:</label>
+            <input type="time" id="medicationTime">
+            <button class="btn" onclick="setReminder('medication')">Set Medication Alert</button>
+        </div>
+        
+        <div class="input-group">
+            <label for="waterTime">Set Water Time:</label>
+            <input type="time" id="waterTime">
+            <button class="btn" onclick="setReminder('water')">Set Water Alert</button>
+        </div>
+        
+        <h2>Reminder Log</h2>
+        <div id="log">No reminders set yet.</div>
+
+        <button class="btn back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function setReminder(type) {
+            let timeInput = document.getElementById(type + 'Time').value;
+            
+            if (!timeInput) {
+                alert("Please enter a valid time.");
+                return;
+            }
+
+            let [hours, minutes] = timeInput.split(':').map(Number);
+            let now = new Date();
+            let reminderTime = new Date();
+            reminderTime.setHours(hours, minutes, 0, 0);
+            
+            let delay = reminderTime - now;
+            if (delay < 0) {
+                delay += 24 * 60 * 60 * 1000; // If time has passed, set for next day
+            }
+
+            let customMessage = `Time to take your ${type}!`;
+            document.getElementById('log').innerHTML += `<p>✅ Reminder set: ${customMessage} at ${timeInput}</p>`;
+
+            setTimeout(() => {
+                alert(customMessage);
+                navigator.vibrate(200);
+                let speech = new SpeechSynthesisUtterance(customMessage);
+                speech.lang = 'en-US';
+                speech.rate = 1;
+                window.speechSynthesis.speak(speech);
+            }, delay);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

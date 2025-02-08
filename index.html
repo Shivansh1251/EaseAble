@@ -1,57 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Voice Command</title>
+    <title>EaseAble</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h2>Speak "Emergency" or "Danger" for SOS 🚨</h2>
-    <h2>Say "Help" to Call Your Caretaker ☎️</h2>
+    <div class="navbar">
+        <img src="Images/logo.png" alt="EaseAble Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Health Tips</a></li>
+        </ul>
+        <ul class="nav-right">
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">Dark</a></li>
+        </ul>
+    </div>
+
+
+    <div class="content-container">
+        <div class="text-content">
+            <h1>Welcome to EaseAble</h1>
+            <p>At EaseAble, we believe technology should empower everyone. Our platform enhances daily life, making it safer and more independent.</p>
+            <button type="button"><span></span>Learn More</button>
+            <button type="button"><span></span>Get Started</button>
+        </div>
+        <div class="image-content">
+            <img id="changingImage" src="Images/image1.jpeg" alt="EaseAble">
+        </div>
+    </div>
     
-    <input type="text" id="voiceInput" placeholder="Click mic and speak">
-    <button onclick="startListening()">🎤 Start Listening</button>
-    <audio id="siren" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
-    <script>
-        function startListening() {
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = 'en-US';
-            recognition.start();
+    </div>
 
-            recognition.onresult = function(event) {
-                let speechResult = event.results[0][0].transcript.toLowerCase();
-                document.getElementById("voiceInput").value = speechResult;
+    <!-- Features Section -->
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Key Features</h2>
+        <div class="cards-container">
+            <!-- Instant Emergency Assistance Card -->
+            <!-- Instant Emergency Assistance Card -->
+            <div class="card">
+                <h3>Instant Emergency Assistance</h3>
+                <p>Say "Help" to alert your caretaker immediately.</p>
 
-                // If user says "emergency" or "danger"
-                if (speechResult.includes("emergency") || speechResult.includes("danger")) {
-                    alert("⚠️ Emergency detected! Calling SOS...");
-                    
-                    // Play siren sound
-                    document.getElementById("siren").play();
+                <p id="voiceResult" class="voice-text">Listening...</p> <!-- Speech text appears here -->
 
-                    // Call emergency services after 3 seconds
-                    setTimeout(() => {
-                        window.location.href = "tel:112"; // Change to your country's emergency number
-                    }, 3000);
-                }
+                <button class="help-button">Help</button>
+                <button onclick="startListening()">🎤 Start Listening</button>
 
-                // If user says "help", call the caretaker
-                else if (speechResult.includes("help")) {
-                    alert("📞 Calling your caretaker...");
-                    
-                    // Call caretaker immediately
-                    setTimeout(() => {
-                        window.location.href = "tel:+919876543210"; // Change to your caretaker's number
-                    }, 2000);
-                }
-            };
+                <audio id="siren" src="Images/siren-police-279029.mp3"></audio>
+            </div>
 
-            recognition.onerror = function(event) {
-                console.error("Error occurred: ", event.error);
-            };
-        }
-    </script>
+
+
+            <div class="card">
+                <h3>Customizable Display</h3>
+                <p>Adjust text size & contrast for better visibility.</p>
+                <div class="text-size-controls">
+                    <button class="decrease-text">−</button>
+                    <span>Text Size</span>
+                    <button class="increase-text">+</button>
+                </div>
+            </div>
+            <!-- Screen Reader Support Card -->
+            <!-- Screen Reader Support Card -->
+            <div class="card">
+                <h3>Screen Reader Support</h3>
+                <p>Navigate effortlessly with voice guidance.</p>
+                <button class="reader-button">Enable Reader</button>
+                <button class="stop-reader-button">Stop Reader</button>
+            </div>
+
+
+            <div class="card">
+                <h3>On-Screen Keyboard</h3>
+                <p>Type with ease, no physical keyboard required.</p>
+            </div>
+            <div class="card">
+                <h3>Smart Health Reminders</h3>
+                <p>Stay on track with medication & hydration alerts.</p>
+                <button class="enable-reminder-button">Enable Reminder</button>
+            </div>
+
+        </div>
+    </section>
+    <!-- Health Tips Section -->
+    <section class="health-tips">
+        <h2>Daily Health Tips</h2>
+        <div class="tips-container">
+            <div class="tip-card">
+                <span>💧</span>
+                <h3>Stay Hydrated</h3>
+                <p>Drink at least 8 glasses of water daily to keep your body hydrated and active.</p>
+            </div>
+            <div class="tip-card">
+                <span>🥦</span>
+                <h3>Eat Healthy</h3>
+                <p>Include fruits, vegetables, and proteins in your meals for a balanced diet.</p>
+            </div>
+            <div class="tip-card">
+                <span>🏋️‍♂️</span>
+                <h3>Exercise Daily</h3>
+                <p>Engage in at least 30 minutes of physical activity to maintain good health.</p>
+            </div>
+            <div class="tip-card">
+                <span>🛌</span>
+                <h3>Get Enough Sleep</h3>
+                <p>Aim for 7-8 hours of quality sleep every night for better recovery.</p>
+            </div>
+            <div class="tip-card">
+                <span>😌</span>
+                <h3>Manage Stress</h3>
+                <p>Practice meditation, deep breathing, or yoga to reduce stress levels.</p>
+            </div>
+            <div class="tip-card">
+                <span>🩺</span>
+                <h3>Regular Check-ups</h3>
+                <p>Visit your doctor regularly to ensure you are in good health.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Emergency Pop-Up Modal -->
+    <div id="emergencyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Emergency Alert!</h2>
+            <p id="modalMessage">Calling SOS...</p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 EaseAble. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="#">Facebook</a> |
+                <a href="#">Twitter</a> |
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
 </body>
+
 </html>
-    
