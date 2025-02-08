@@ -88,6 +88,10 @@ function triggerEmergency(type) {
     }
 }
 
+function openAccessibleMap() {
+    window.open("https://www.google.com/maps/search/wheelchair+accessible+places", "_blank");
+}
+
 // Close Pop-Up on Click
 document.querySelector(".close").addEventListener("click", function() {
     document.getElementById("emergencyModal").style.display = "none";
