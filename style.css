@@ -377,6 +377,14 @@ body.dark-mode {
         width: 100%;
         max-width: 450px;
     }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        width: 100%; /* Ensure cards take full width on smaller screens */
+    }
 }
 
 /* Responsive Design */
@@ -419,6 +427,10 @@ body.dark-mode {
         grid-template-columns: 1fr;
     }
 
+    .card {
+        width: 100%; /* Ensure cards take full width on smaller screens */
+    }
+
     .tip-card img {
         height: 120px;
     }
@@ -439,6 +451,13 @@ body.dark-mode {
     .social-media {
         margin-top: 10px;
         text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        align-self: flex-end; /* Ensure hamburger icon is aligned to the right */
     }
 }
 
@@ -765,7 +784,6 @@ button {
         height: 150px;
     }
 }
-
 
 
 
