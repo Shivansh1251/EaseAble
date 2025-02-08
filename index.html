@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Voice Command</title>
+</head>
+<body>
+    <h2>Speak "Emergency" or "Danger" for SOS 🚨</h2>
+    <h2>Say "Help" to Call Your Caretaker ☎️</h2>
+    
+    <input type="text" id="voiceInput" placeholder="Click mic and speak">
+    <button onclick="startListening()">🎤 Start Listening</button>
+    <audio id="siren" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+    <script>
+        function startListening() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                let speechResult = event.results[0][0].transcript.toLowerCase();
+                document.getElementById("voiceInput").value = speechResult;
+
+                // If user says "emergency" or "danger"
+                if (speechResult.includes("emergency") || speechResult.includes("danger")) {
+                    alert("⚠️ Emergency detected! Calling SOS...");
+                    
+                    // Play siren sound
+                    document.getElementById("siren").play();
+
+                    // Call emergency services after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = "tel:112"; // Change to your country's emergency number
+                    }, 3000);
+                }
+
+                // If user says "help", call the caretaker
+                else if (speechResult.includes("help")) {
+                    alert("📞 Calling your caretaker...");
+                    
+                    // Call caretaker immediately
+                    setTimeout(() => {
+                        window.location.href = "tel:+919876543210"; // Change to your caretaker's number
+                    }, 2000);
+                }
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Error occurred: ", event.error);
+            };
+        }
+    </script>
+</body>
+</html>
