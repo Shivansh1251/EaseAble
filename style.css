@@ -379,6 +379,68 @@ body.dark-mode {
     }
 }
 
+/* Responsive Design */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav-links, .nav-right {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li, .nav-right li {
+        margin: 10px 0;
+    }
+
+    .content-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .text-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .image-content img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .features {
+        padding: 20px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .tip-card img {
+        height: 120px;
+    }
+
+    .footer-container {
+        padding: 10px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links li {
+        margin: 5px 0;
+    }
+
+    .social-media {
+        margin-top: 10px;
+        text-align: center;
+    }
+}
 
 /* Button Styling */
 button {
