@@ -1,3 +1,33 @@
+function toggleMenu() {
+    document.querySelector(".mobile-menu").classList.toggle("active");
+}
+
+// Dark Mode Toggle Functionality in Navbar
+const darkModeToggle = document.getElementById("darkModeToggle");
+const body = document.body;
+
+// Check if dark mode is enabled in localStorage
+if (localStorage.getItem("dark-mode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change icon to Sun
+}
+
+// Toggle Dark Mode
+darkModeToggle.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default link behavior
+
+    body.classList.toggle("dark-mode");
+
+    // Save preference in localStorage
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("dark-mode", "enabled");
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for Light Mode
+    } else {
+        localStorage.setItem("dark-mode", "disabled");
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for Dark Mode
+    }
+});
+
 // Handle "Help" Button Click
 // Emergency Help Button Click Event
 document.querySelector(".help-button").addEventListener("click", function() {

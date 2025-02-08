@@ -4,10 +4,111 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
 }
+
+
+/* Light Mode (Default) */
+body {
+    background: #f4f4f4;
+    color: #222;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Sections Light Mode */
+section {
+    padding: 50px 20px;
+    background: #ffffff;
+    transition: background 0.3s ease;
+}
+
+/* Sections Dark Mode */
+.dark-mode section {
+    background: #222;
+    border: 1px solid #444; /* Adds subtle contrast */
+    padding: 55px 20px; /* Slightly more padding */
+}
+
+
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 18px; /* Slightly bigger */
+    transition: color 0.3s ease, transform 0.3s;
+}
+
+/* Dark Mode Icon */
+.dark-mode #darkModeToggle {
+    color: yellow;
+    transform: rotate(180deg);
+}
+
+
+
+
+
+/* Dark Mode */
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+/* Navbar Dark Mode */
+.dark-mode .navbar {
+    background: #1a1a1a;
+    box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Navbar Link */
+.dark-mode .navbar a {
+    color: white;
+}
+
+/* Dark Mode Cards */
+.dark-mode .card, .dark-mode .tip-card {
+    background: #222;
+    color: white;
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Buttons */
+.dark-mode button {
+    background: #444;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode button:hover {
+    background: #666;
+}
+
+/* Dark Mode Footer */
+.dark-mode footer {
+    background: #1a1a1a;
+    color: white;
+}
+
+/* Dark Mode Toggle Button (Navbar) */
+#darkModeToggle {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode #darkModeToggle {
+    color: yellow; /* Changes "Dark" to Yellow when in dark mode */
+}
+
 
 
 
@@ -67,13 +168,8 @@ body {
 
 /* Navbar Styling */
 /* Logo Styling */
-.logo {
-    height: 50px; /* Adjust as needed */
-    width: auto;
-    cursor: pointer;
-}
-
-/* Ensuring Navbar Aligns Well */
+/* Navbar */
+/* Navbar Light Mode */
 .navbar {
     display: flex;
     align-items: center;
@@ -81,41 +177,110 @@ body {
     padding: 15px 20px;
     background: white;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
 }
 
-
-.nav-links {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
+/* Navbar Dark Mode */
+.dark-mode .navbar {
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d); /* Subtle Gradient */
+    box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.1);
 }
 
-.nav-links li {
-    list-style: none;
-    margin: 0 20px;
-}
-
-.nav-links a {
+/* Navbar Links */
+.navbar a {
     text-decoration: none;
     color: black;
+    font-weight: bold;
     text-transform: uppercase;
-    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-.nav-right {
+/* Dark Mode Navbar Links */
+.dark-mode .navbar a {
+    color: white;
+}
+
+
+/* Logo */
+.logo {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+}
+
+/* Desktop Navigation Links */
+.nav-links, .nav-right {
     display: flex;
-}
-
-.nav-right li {
     list-style: none;
-    margin: 0 10px;
 }
 
-.nav-right a {
+.nav-links li, .nav-right li {
+    margin: 0 15px;
+}
+
+.nav-links a, .nav-right a {
     text-decoration: none;
     color: black;
     font-weight: bold;
+    text-transform: uppercase;
 }
+
+/* Mobile Menu Hidden by Default */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 10px 0;
+}
+
+.mobile-menu li {
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: block;
+}
+
+.mobile-menu li:hover {
+    background: #f4f4f4;
+}
+
+/* Responsive Navbar */
+@media (max-width: 900px) {
+    .nav-links, .nav-right {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+}
+
 
 /* Main Content */
 /* Main Content Section */
@@ -124,26 +289,29 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    padding: 50px;
+    padding: 60px;
     max-width: 1200px;
     margin: auto;
+    background: linear-gradient(to right, #0078D7, #00BFA5); /* Gradient Background */
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Text Content */
 .text-content {
     max-width: 50%;
+    color: white;
 }
 
 .text-content h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 42px;
+    margin-bottom: 15px;
 }
 
 .text-content p {
     font-size: 18px;
     line-height: 1.5;
-    margin-bottom: 20px;
-    color: #555;
+    margin-bottom: 25px;
 }
 
 /* Image Content */
@@ -153,10 +321,44 @@ body {
 }
 
 .image-content img {
-    width: 450px; /* Adjust as needed */
+    width: 450px; /* Adjust size */
     height: auto;
     border-radius: 10px;
     transition: opacity 1s ease-in-out;
+}
+
+/* Button Styling */
+.text-content button {
+    width: 180px;
+    padding: 12px 0;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* "Learn More" Button */
+.text-content button:first-of-type {
+    background: #FFC107; /* Yellow */
+    color: black;
+}
+
+.text-content button:first-of-type:hover {
+    background: #E0A800;
+}
+
+/* "Get Started" Button */
+.text-content button:last-of-type {
+    background: #FF5722; /* Orange */
+    color: white;
+}
+
+.text-content button:last-of-type:hover {
+    background: #E64A19;
 }
 
 /* Responsive Design */
@@ -164,6 +366,7 @@ body {
     .content-container {
         flex-direction: column;
         text-align: center;
+        padding: 40px;
     }
 
     .text-content {
@@ -175,6 +378,7 @@ body {
         max-width: 450px;
     }
 }
+
 
 /* Button Styling */
 button {
@@ -218,64 +422,101 @@ button:hover {
 .features {
     text-align: center;
     padding: 50px 20px;
-    background: white;
+    background: #f4f4f4;
 }
 
 .features h2 {
     font-size: 32px;
     margin-bottom: 30px;
+    color: #333;
 }
 
+/* Cards Grid */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    justify-content: center;
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
 }
 
+/* Unified Card Style */
 .card {
-    background: #009688;
+    background: #0078D7; /* Single color for all cards (Blue) */
     color: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 }
 
+/* Hover Effect */
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Card Titles */
 .card h3 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 10px;
 }
 
+/* Card Text */
 .card p {
     font-size: 16px;
 }
 
-/* Single Row for 3rd Card */
-.cards-container .card:nth-child(3) {
-    grid-column: span 2;
-    justify-self: center;
-    width: 60%;
+/* Button inside Cards */
+.card button {
+    background: white;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.card button:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Image Content */
+.image-content {
+    flex: 1;
+    text-align: center;
+    background: linear-gradient(to right, #3F51B5, #009688); /* Gradient Background */
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.image-content img {
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+    transition: opacity 1s ease-in-out;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .cards-container {
         grid-template-columns: 1fr;
     }
 
-    .cards-container .card:nth-child(3) {
-        grid-column: span 1;
+    .image-content {
+        padding: 10px;
+    }
+
+    .image-content img {
         width: 100%;
+        max-width: 450px;
     }
 }
+
 
 /* Buttons */
 button {
@@ -381,58 +622,90 @@ button {
 }
 
 /* Health Tips Section */
+/* Health Tips Section */
 .health-tips {
     text-align: center;
     padding: 50px 20px;
-    background: #f9f9f9;
+    background: #f4f4f4;
 }
 
+/* Section Heading */
 .health-tips h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #222;
 }
 
 /* Tips Grid */
 .tips-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     max-width: 1000px;
     margin: auto;
 }
 
-/* Individual Tip Card */
+/* Health Tip Card */
 .tip-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    background: white; /* Normal color */
+    color: black;
+    border-radius: 12px;
     text-align: center;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Glow Effect on Hover */
 .tip-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0px 0px 20px rgba(0, 170, 255, 0.8); /* Blue glow effect */
 }
 
-/* Tip Icon */
-.tip-card span {
-    font-size: 30px;
-    display: block;
-    margin-bottom: 10px;
+/* Image Styling */
+.tip-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
+/* Content inside the card */
+.tip-card .card-content {
+    padding: 20px;
+}
+
+/* Health Tip Title */
 .tip-card h3 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 10px;
-    color: #0078D7;
+    color: #0078D7; /* Blue for contrast */
 }
 
+/* Health Tip Description */
 .tip-card p {
     font-size: 16px;
+    line-height: 1.5;
     color: #555;
 }
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .tips-container {
+        grid-template-columns: 1fr;
+    }
+
+    .tip-card img {
+        height: 150px;
+    }
+}
+
+
+
 
 
 
